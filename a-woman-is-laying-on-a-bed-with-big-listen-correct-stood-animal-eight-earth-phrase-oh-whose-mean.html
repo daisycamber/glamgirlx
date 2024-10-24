@@ -197,9 +197,9 @@
         $(document).ready(function() {
             
             
-            var hideVoteCookie = getCookie("hidevotebanner");
+            var hideVoteCookie = getCookie("hidevotebanner") != '';
             if(document.getElementById('vote-banner') && hideVoteCookie) { document.getElementById('vote-banner').classList.add('fade-hidden'); }
-            else if(document.getElementById('vote-banner')) { document.getElementById('vote-banner').classList.add('fade-hidden'); 
+            else if(document.getElementById('vote-banner')) { document.getElementById('vote-banner').classList.remove('fade-hidden');
             document.getElementById('vote-banner').classList.remove('hide'); }
             
             $(document.getElementById("glam-navbar")).autoHidingNavbar();
