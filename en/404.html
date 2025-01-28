@@ -74,7 +74,7 @@ function getLang() {
     return navigator.languages[0]; 
   return navigator.language;
 }
-var allowedLangs = ['en','de','fr',];
+var allowedLangs = ['en',];
 var theLang = getLang();
 if(theLang == 'en-US'){ theLang = 'en'; }
 if(allowedLangs.includes(theLang) && theLang != 'en' && 'en' == 'en') {
