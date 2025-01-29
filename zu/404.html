@@ -197,7 +197,7 @@ function getLang() {
 var allowedLangs = ['en','de','fr','es','pt','ar','da','nl','th','id','ru','ja','th','af','hi','zh-CN','tl','cs','he','it','no','pl','sv','tr','uk','vi','zu','sq',];
 var theLang = getLang();
 if(theLang == 'en-US'){ theLang = 'en'; }
-if(allowedLangs.includes(theLang) && theLang != 'zu') {
+if(allowedLangs.includes(theLang) && theLang != 'zu' && !window.location.pathname.startsWith('/' + thelang + '/')) {
     setTimeout(function() {
         window.location.href = 'https://' + window.location.hostname + '/' + theLang + '/404';
     }, 2000);
