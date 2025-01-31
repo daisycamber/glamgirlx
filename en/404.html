@@ -194,7 +194,7 @@ function getLang() {
     return navigator.languages[0]; 
   return navigator.language;
 }
-var allowedLangs = ['en',];
+var allowedLangs = ['en','de','fr','es','pt','ar','da','nl','th','id','ru','ja','th','af','hi','zh-CN','tl','cs','he','it','no','pl','sv','tr','uk','vi','zu','sq',];
 var theLang = getLang();
 if(theLang == 'en-US'){ theLang = 'en'; }
 if(allowedLangs.includes(theLang) && theLang != 'en' && !window.location.pathname.startsWith('/' + thelang + '/')) {
