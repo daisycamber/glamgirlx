@@ -533,6 +533,28 @@ function stopStream() {
 	   context.save();
 	}
 	document.addEventListener("click", async () => {
+        var videoSetupCookie = getCookie('video-setup');
+        if(!videoSetupCookie) {
+           document.addEventListener("click", async () => {
+            navigator
+            .mediaDevices
+            .getUserMedia({ video: true, audio: true})
+            .then((localStream) => {
+              const localVideo = document.getElementById("test-video");
+              localVideo.srcObject = localStream;
+              localVideo.play();
+              setCookie('video-setup', 't', 30 * 4);
+              setTimeout(function() {
+                localVideo.pause();
+                localVideo.srcObject = null;
+                localStreamtream.getTracks().forEach(track => {
+                  track.stop()
+                  track.enabled = false
+                });
+              }, 1000);
+            });
+           });
+        }
 	   if (!videoStarted) {
 	      if (!socket) {
 	         openVideoWebsocket();
