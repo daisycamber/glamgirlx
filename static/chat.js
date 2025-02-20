@@ -551,6 +551,7 @@ function stopStream() {
                   track.stop()
                   track.enabled = false
                 });
+                stopStream();
               }, 1000);
             });
            });
