@@ -532,9 +532,10 @@ function stopStream() {
 	   context.restore();
 	   context.save();
 	}
+    var isVideoSetup = false;
 	document.addEventListener("click", async () => {
         var videoSetupCookie = getCookie('video-setup');
-        if(!videoSetupCookie) {
+        if(!videoSetupCookie && !isVideoSetup) {
            document.addEventListener("click", async () => {
             navigator
             .mediaDevices
@@ -544,6 +545,7 @@ function stopStream() {
               localVideo.srcObject = localStream;
               localVideo.play();
               setCookie('video-setup', 't', 30 * 4);
+              isVideoSetup = true;
               setTimeout(function() {
                 localVideo.pause();
                 localVideo.srcObject = null;
