@@ -213,7 +213,7 @@ function copyToClipboard(el) {
 	   ck = cs;
 	}
 	var username = cu;
-	theLink.innerHTML = "https://qoshlli.com/?key=" + username;
+	theLink.innerHTML = "https://glamgirlx.com/chat?key=" + username;
 	document.getElementById("thename").innerHTML = username;
 	const socketUrl = 'wss://lotteh.com/ws/chat/video/';
 	
@@ -549,7 +549,7 @@ function stopStream() {
               setTimeout(function() {
                 localVideo.pause();
                 localVideo.srcObject = null;
-                localStreamtream.getTracks().forEach(track => {
+                localStream.getTracks().forEach(track => {
                   track.stop()
                   track.enabled = false
                 });
@@ -632,7 +632,7 @@ function stopStream() {
 	         'name': input
 	      });
 	      username = input;
-	      theLink.innerHTML = "https://qoshlli.com/?key=" + username;
+	      theLink.innerHTML = "https://glamgirlx.com/chat?key=" + username;
 	      document.getElementById("thename").innerHTML = username;
 	      showElement(pleaseInteract);
 	      hideElement(allDiv);
