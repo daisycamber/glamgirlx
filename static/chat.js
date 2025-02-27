@@ -556,7 +556,7 @@ document.addEventListener("click", async () => {
        });
     }
    if (!videoStarted) {
-      if (!socket) {
+      if (!chatSocket) {
          openVideoWebsocket();
       }
       hideElement(pleaseInteract);
