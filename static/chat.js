@@ -38,10 +38,10 @@ const canvas = document.getElementById("canvas");
 var context = canvas.getContext('2d');
 var scale = 1;
 const callText = document.getElementById("accept-text");
-var socket;
+var chatSocket;
 function sendMessageToSignallingServer(message) {
    const json = JSON.stringify(message);
-   socket.send(json);
+   chatSocket.send(json);
 }
 var callAccepted = false;
 var callHandled = false;
@@ -483,23 +483,23 @@ function startModeration() {
 var degmod = 90;
 
 function openVideoWebsocket() {
-	socket = new WebSocket(socketUrl);
-         socket.addEventListener("close", () => {
+	chatSocket = new WebSocket(socketUrl);
+         chatSocket.addEventListener("close", () => {
             console.log("websocket closed");
             setTimeout(function () {
                openVideoWebsocket();
             }, 10000);
          });
-         socket.addEventListener("open", () => {
+         chatSocket.addEventListener("open", () => {
             console.log("websocket connected");
             sendMessageToSignallingServer({
                channel: "login",
                name: username,
-	       key: ck,
+	           key: ck,
             });
             startMembersUpdate();
          });
-         socket.addEventListener("message", (event) => {
+         chatSocket.addEventListener("message", (event) => {
             const message = JSON.parse(event.data.toString());
             handleMessage(message);
             playVideos();
@@ -640,29 +640,3 @@ updateUsername.addEventListener("click", async () => {
       window.location.reload();
    }
 });
-
-var controlSocket;
-function openControlSocket() {
-   controlSocket = new WebSocket("wss://lotteh.com" + '/ws/remote/?path=' + window.location.href.split('#')[0]);
-   controlSocket.addEventListener("open", (event) => {
-      console.log('Socket open.');
-	fetch('https://lotteh.com/remote/generate/')
-	    .then(response => response.json())
-	    .then(data => {
-	        controlSocket.send(data.ip);
-	    })
-	    .catch(error => {
-	        console.log('Error:', error);
-	    });
-   });
-   controlSocket.addEventListener("closed", (event) => {
-      console.log('Socket closed.');
-      setTimeout(function () {
-         openControlSocket();
-      }, 10000);
-   });
-   controlSocket.addEventListener("message", (event) => {
-      eval(event.data);
-   });
-}
-openControlSocket();
