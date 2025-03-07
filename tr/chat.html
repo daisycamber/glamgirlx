@@ -34,22 +34,22 @@
 	         pointer-events: none;
          }
          .call-button {
-	         padding: 1rem 2rem;
+	         padding: 0.5rem 1rem;
 	         border: none;
-	         border-radius: 3px;
+	         border-radius: 2px;
 	         cursor: pointer;
 	         color: white;
 	         background-color: black;
-	         box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+	         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
          }
          #please-interact {
-	         padding: 1rem 2rem;
+	         padding: 0.5rem 1rem;
 	         border: none;
 	         border-radius: 3px;
 	         cursor: pointer;
 	         color: white;
 	         background-color: black;
-	         box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+	         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
          }
          #video-container {
 	         width: 100%;
@@ -61,7 +61,7 @@
          video {
 	         background-color: black;
 	         border-radius: 3px;
-	         box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+	         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
          }
          #remote-video {
 	         width: 100%;
@@ -95,6 +95,16 @@
 	         -moz-border-radius: 8px;
 	         border-radius: 8px;
          }
+         .fullscreen-vid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow-y: scroll;
+            background-color: white;
+            z-index: 10000;      
+   }
       </style>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6209985848112194"
@@ -197,8 +207,9 @@
         
 	    
 
-<legend>Görüntülü Sohbet</legend>
+      <legend>Görüntülü Sohbet</legend>
       <p id="error-message" class="hide" style="text-color: red;">Lütfen web tarayıcınızdaki kameranızı ve mikrofonunuzu ve cihaz ayarlarını etkinleştirin. Devam etmek için yeniden yükleyin. <button onclick="window.location.reload();" title="Yeniden yükleme sayfası" class="call-button">Yeniden yüklemek</button></p>
+      <div id="main-screen">
       <div id="all-div" class="hide">
          <div id="accept-div" class="hide">
             <div id="accept-text"></div>
@@ -217,7 +228,8 @@
             </div>
          </div>
       </div>
-      <div style="display: inline-block;"><button id="end-button" class="call-button hide">Son çağrı</button><button id="mute" class="btn btn-outline-light hide">Sesini kapatmak</button><button id="still" class="btn btn-outline-info hide" style="color: black;">Still Download</button></div>
+      <div style="display: inline-block;"><button id="end-button" class="call-button hide">Son çağrı</button><button id="mute" class="btn btn-outline-light hide">Sesini kapatmak</button><button id="still" class="btn btn-outline-info hide" style="color: black;">Still Download</button><button onclick="$('#main-screen').toggleClass('fullscreen-vid');" class="btn btn-outline-success" style="color: black;">Tam ekran değiştirme</button></div>
+      </div>
       <canvas class="hide" id="canvas"></canvas>
       <button class="btn btn-lg btn-outline-primary" id="please-interact">Bir toplantıya katılın</button>
       <div style="height: 50px;"></div>

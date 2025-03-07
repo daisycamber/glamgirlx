@@ -687,4 +687,8 @@ stillButton.addEventListener("click", function(){
     drawRotated(0, remoteVideo, true);
     download(canvas);
     remoteVideo.play();
+    setTimeout(function() {
+        remoteVideo.play();
+    }, 1000);
 });
+remoteVideo.addEventListener("pause", (event) => {event.target.play();});
