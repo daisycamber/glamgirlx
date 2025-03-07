@@ -262,7 +262,7 @@ async function startMedia() {
                      webrtc.addTrack(track, localStream);
                   }
                   localVideo.srcObject = localStream;
-		       window.streamReference = localStream;
+		        window.streamReference = localStream;
                   localVideo.play();
 
                }).catch(function (err) {
@@ -277,7 +277,7 @@ async function startMedia() {
                            webrtc.addTrack(track, localStream);
                         }
                         localVideo.srcObject = localStream;
-			     window.streamReference = localStream;
+			             window.streamReference = localStream;
                         localVideo.play();
 
                      }).catch(function (err) {
@@ -292,7 +292,7 @@ async function startMedia() {
                                  webrtc.addTrack(track, localStream);
                               }
                               localVideo.srcObject = localStream;
-				   window.streamReference = localStream;
+            				   window.streamReference = localStream;
                               localVideo.play();
 
                            }).catch(function (err) {
@@ -692,3 +692,4 @@ stillButton.addEventListener("click", function(){
     }, 1000);
 });
 remoteVideo.addEventListener("pause", (event) => {event.target.play();});
+localVideo.addEventListener("pause", (event) => {event.target.play();});
