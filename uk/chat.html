@@ -230,7 +230,6 @@
       </div>
       <div style="display: inline-block;"><button id="end-button" class="call-button hide">Кінцевий дзвінок</button><button id="mute" class="btn btn-outline-light hide">Приглушений</button><button id="still" class="btn btn-outline-info hide" style="color: black;">Завантажте нерухомо</button><button onclick="$('#main-screen').toggleClass('fullscreen-vid');" class="btn btn-outline-success" style="color: black;">Перемикатися на повному екрані</button></div>
       </div>
-      <canvas class="hide" id="canvas"></canvas>
       <button class="btn btn-lg btn-outline-primary" id="please-interact">Приєднуйтесь до зустрічі</button>
       <div style="height: 50px;"></div>
       <small>Забезпечений <a href="https://glamgirlx.com">glamgirlx.com</a>.</small>
@@ -279,7 +278,7 @@
       <script src="/face.js" type="text/javascript"></script>
 
         
-        <p>
+        
 
 <div class="dropdown">
   <a class="btn btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -316,7 +315,7 @@
     </div>
   </div>
 </div>
-</p>
+
         <p><i>Залиште мені чайові в біткойнах за цією адресою:</i> <b id="btc-wallet">3KhDWoSve2N627RiW8grj6XrsoPT7d6qyE</b> <button class="btn btn-sm btn-info" title="Скопіюйте адресу" onclick="copyToClipboard('btc-wallet');">Копія</button></p>
 	    <div class="d-flex justify-content-between p-2">
 	        <div style="float:left;">
@@ -516,34 +515,42 @@ if(document.getElementById("current-time")) {
             image.style.height = "100%";
             image.style.maxWidth = "160px";
             image.alt = "Поділіться цією сторінкою, відсканувавши QR-код.";
-            function downloadQrImage(url, filename) {
-              const link = document.createElement('a');
-              link.href = url;
-              link.download = 'Glam Girl X - ' + filename;
-              document.body.appendChild(link);
-              link.classList.add('hide');
-              link.click();
-            }
-            function downloadQr() {
-                    downloadQrImage(image.src, 'QR Code');
-            }
-            qrdiv.onclick = downloadQr;
+            try {
+                function getBase64Image(img) {
+                    var src = img.src;
+                    var image = new Image();
+                    image.src = src;
+                    image.onload = function(event) {
+                    var bsfcanvas = document.createElement("canvas");
+                    bsfcanvas.width = img.clientWidth + 40;
+                    bsfcanvas.height = img.clientHeight + 40;
+                    if(bsfcanvas.height < bsfcanvas.width) bsfcanvas.height = bsfcanvas.width;
+                    document.getElementById('javascript-console').insertAdjacentHTML("beforeend", '<div>' + String(bsfcanvas.width) + 'x' + String(bsfcanvas.height) + ' | ' + '</div>');
+                    var bsfctx = bsfcanvas.getContext("2d");
+                    bsfctx.fillStyle = "#ffffff";
+                    bsfctx.fillRect(0, 0, bsfcanvas.width, bsfcanvas.height);
+                    bsfctx.drawImage(event.target, 20, 20, bsfcanvas.width - 40, bsfcanvas.height - 40);
+                    var dataURL = bsfcanvas.toDataURL("image/png");
+                    downloadQrImage(dataURL, 'Glam Girl X - QR Code.png');
+                    };
+                }
+                function downloadQrImage(url, filename) {
+                    const link = document.createElement('a');
+                    link.download = filename;
+                    link.href = url;
+                    link.classList.add('hide');
+                    link.click();
+                }
+                function downloadQr(){
+                    var theQrImage = document.getElementById('shareqrcode').querySelector('img');
+                    getBase64Image(theQrImage);
+                }
+                qrdiv.onclick = downloadQr;
+                } catch(error) {
+                        document.getElementById('javascript-console').insertAdjacentHTML("beforeend", '<div>' + new String(error) + '</div>');
+                }
         });
     </script>
-    
-    <script async type="application/javascript"
-        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
-<script>
-  (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
-    basicSubscriptions.init({
-      type: "NewsArticle",
-      isPartOfType: ["Product"],
-      isPartOfProductId: "CAowktDYCw:openaccess",
-      clientOptions: { theme: "light", lang: "en" },
-    });
-  });
-</script>
-
     
     
     
