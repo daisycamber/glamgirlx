@@ -1306,6 +1306,11 @@ function drawDiscard(){
               canPlayerDraw = false;
             currentTurn = i+1;
           } else if(sp[0] == "discard" && sp[2] != user){
+            if(gameIsWon) {
+                nextRound();
+                gameIsWon = false;
+                container.removeChild(wonContainer);
+            }
             opponentDiscard(sp[1]);
             canPlayerDraw = true;
             currentTurn = i+1;

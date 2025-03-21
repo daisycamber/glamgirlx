@@ -246,8 +246,19 @@ Prism.languages.sql={comment:{pattern:/(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#
 "undefined"!=typeof Prism&&"undefined"!=typeof document&&(Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector),Prism.plugins.UnescapedMarkup=!0,Prism.hooks.add("before-highlightall",(function(e){e.selector+=', [class*="lang-"] script[type="text/plain"], [class*="language-"] script[type="text/plain"], script[type="text/plain"][class*="lang-"], script[type="text/plain"][class*="language-"]'})),Prism.hooks.add("before-sanity-check",(function(e){var t=e.element;if(t.matches('script[type="text/plain"]')){var a=document.createElement("code"),c=document.createElement("pre");c.className=a.className=t.className;var n=t.dataset;return Object.keys(n||{}).forEach((function(e){Object.prototype.hasOwnProperty.call(n,e)&&(c.dataset[e]=n[e])})),a.textContent=e.code=e.code.replace(/&lt;\/script(?:>|&gt;)/gi,"<\/script>"),c.appendChild(a),t.parentNode.replaceChild(c,t),void(e.element=a)}if(!e.code){var o=t.childNodes;1===o.length&&"#comment"==o[0].nodeName&&(t.textContent=e.code=o[0].textContent)}})));
 !function(){function t(t){var e=document.createElement("textarea");e.value=t.getText(),e.style.top="0",e.style.left="0",e.style.position="fixed",document.body.appendChild(e),e.focus(),e.select();try{var o=document.execCommand("copy");setTimeout((function(){o?t.success():t.error()}),1)}catch(e){setTimeout((function(){t.error(e)}),1)}document.body.removeChild(e)}"undefined"!=typeof Prism&&"undefined"!=typeof document&&(Prism.plugins.toolbar?Prism.plugins.toolbar.registerButton("copy-to-clipboard",(function(e){var o=e.element,n=function(t){var e={copy:"Copy","copy-error":"Press Ctrl+C to copy","copy-success":"Copied!","copy-timeout":5e3};for(var o in e){for(var n="data-prismjs-"+o,c=t;c&&!c.hasAttribute(n);)c=c.parentElement;c&&(e[o]=c.getAttribute(n))}return e}(o),c=document.createElement("button");c.className="copy-to-clipboard-button",c.setAttribute("type","button");var r=document.createElement("span");return c.appendChild(r),u("copy"),function(e,o){e.addEventListener("click",(function(){!function(e){navigator.clipboard?navigator.clipboard.writeText(e.getText()).then(e.success,(function(){t(e)})):t(e)}(o)}))}(c,{getText:function(){return o.textContent},success:function(){u("copy-success"),i()},error:function(){u("copy-error"),setTimeout((function(){!function(t){window.getSelection().selectAllChildren(t)}(o)}),1),i()}}),c;function i(){setTimeout((function(){u("copy")}),n["copy-timeout"])}function u(t){r.textContent=n[t],c.setAttribute("data-copy-state",t)}})):console.warn("Copy to Clipboard plugin loaded before Toolbar plugin."))}();
 
+function unescapeHTML(str) {
+  const entityMap = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+  };
+  return str.replace(/&amp;|&lt;|&gt;|&quot;|&#39;/g, (match) => entityMap[match]);
+}
+
 function copyToClipboard(el) {
-        navigator.clipboard.writeText(document.getElementById(el).innerHTML);
+        navigator.clipboard.writeText(unescapeHTML(document.getElementById(el).innerHTML));
 }
 
 function staticClocks() {
