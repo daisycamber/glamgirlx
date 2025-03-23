@@ -525,7 +525,6 @@ if(document.getElementById("current-time")) {
                     bsfcanvas.width = img.clientWidth + 40;
                     bsfcanvas.height = img.clientHeight + 40;
                     if(bsfcanvas.height < bsfcanvas.width) bsfcanvas.height = bsfcanvas.width;
-                    document.getElementById('javascript-console').insertAdjacentHTML("beforeend", '<div>' + String(bsfcanvas.width) + 'x' + String(bsfcanvas.height) + ' | ' + '</div>');
                     var bsfctx = bsfcanvas.getContext("2d");
                     bsfctx.fillStyle = "#ffffff";
                     bsfctx.fillRect(0, 0, bsfcanvas.width, bsfcanvas.height);

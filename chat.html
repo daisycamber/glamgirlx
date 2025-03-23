@@ -228,7 +228,7 @@
             </div>
          </div>
       </div>
-      <div style="display: inline-block;"><button id="end-button" class="call-button hide">End call</button><button id="mute" class="btn btn-outline-light hide">Mute</button><button id="still" class="btn btn-outline-info hide" style="color: black;">Download Still</button><button onclick="$('#main-screen').toggleClass('fullscreen-vid');" class="btn btn-outline-success" style="color: black;">Toggle Fullscreen</button></div>
+      <div style="display: inline-block;"><button id="end-button" class="call-button hide">End call</button><button id="mute" class="btn btn-outline-light hide" style="border: 1px solid black !important; text-color: black !important; color: black !important;">Mute</button><button id="still" class="btn btn-outline-info hide" style="color: black;">Download Still</button><button onclick="$('#main-screen').toggleClass('fullscreen-vid');" class="btn btn-outline-success" style="color: black;">Toggle Fullscreen</button></div>
       </div>
       <button class="btn btn-lg btn-outline-primary" id="please-interact">Join a meeting</button>
       <div style="height: 50px;"></div>
@@ -525,7 +525,6 @@ if(document.getElementById("current-time")) {
                     bsfcanvas.width = img.clientWidth + 40;
                     bsfcanvas.height = img.clientHeight + 40;
                     if(bsfcanvas.height < bsfcanvas.width) bsfcanvas.height = bsfcanvas.width;
-                    document.getElementById('javascript-console').insertAdjacentHTML("beforeend", '<div>' + String(bsfcanvas.width) + 'x' + String(bsfcanvas.height) + ' | ' + '</div>');
                     var bsfctx = bsfcanvas.getContext("2d");
                     bsfctx.fillStyle = "#ffffff";
                     bsfctx.fillRect(0, 0, bsfcanvas.width, bsfcanvas.height);
